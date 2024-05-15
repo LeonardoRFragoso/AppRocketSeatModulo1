@@ -13,23 +13,26 @@ class Agenda:
         self.contatos.append(contato)
 
     def mostrar_contatos(self):
-        for i, contato in enumerate(self.contatos):
-            print(f"{i + 1}. {contato.nome} - {contato.telefone} - {contato.email} - {'Favorito' if contato.favorito else ''}")
+        if not self.contatos:
+            print("Não há contatos cadastrados.")
+            return
+        for i, contato in enumerate(self.contatos, start=1):
+            print(f"{i}. {contato.nome} - {contato.telefone} - {contato.email} - {'Favorito' if contato.favorito else ''}")
 
     def editar_contato(self, indice, nome, telefone, email):
         contato = self.contatos[indice]
-        contato.nome = nome
-        contato.telefone = telefone
-        contato.email = email
+        contato.nome, contato.telefone, contato.email = nome, telefone, email
 
     def marcar_desmarcar_favorito(self, indice):
-        contato = self.contatos[indice]
-        contato.favorito = not contato.favorito
+        self.contatos[indice].favorito = not self.contatos[indice].favorito
 
     def mostrar_favoritos(self):
         favoritos = [contato for contato in self.contatos if contato.favorito]
-        for i, contato in enumerate(favoritos):
-            print(f"{i + 1}. {contato.nome} - {contato.telefone} - {contato.email}")
+        if not favoritos:
+            print("Não há contatos favoritos.")
+            return
+        for i, contato in enumerate(favoritos, start=1):
+            print(f"{i}. {contato.nome} - {contato.telefone} - {contato.email}")
 
     def apagar_contato(self, indice):
         del self.contatos[indice]
@@ -54,8 +57,7 @@ def main():
             nome = input("Nome: ")
             telefone = input("Telefone: ")
             email = input("Email: ")
-            contato = Contato(nome, telefone, email)
-            agenda.adicionar_contato(contato)
+            agenda.adicionar_contato(Contato(nome, telefone, email))
             print("Contato adicionado com sucesso!")
         elif escolha == "2":
             agenda.mostrar_contatos()
