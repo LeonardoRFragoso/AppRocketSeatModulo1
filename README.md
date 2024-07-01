@@ -25,8 +25,8 @@ Este projeto é uma agenda de contatos que permite adicionar, visualizar, editar
 Clone o repositório para sua máquina local:
 
 ```bash
-git clone https://github.com/SeuUsuario/agenda-contatos.git
-cd agenda-contatos
+git clone https://github.com/LeonardoRFragoso/AppRocketSeatModulo1.git
+cd AppRocketSeatModulo1
 ```
 
 ### Passo 2: Instalar Dependências
